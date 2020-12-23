@@ -16,15 +16,15 @@ function aiMove() {
 
       let score;
       if (minimaxNormal) {
-        score = minimax(board, 5, false);
+        score = minimax(board, maxDepth, false);
       }
       else {
-        score = minimaxABP(board, 8, false, -Infinity, Infinity);
+        score = minimaxABP(board, maxDepth, false, -Infinity, Infinity);
       }
 
       board[j][i] = '';
 
-      if (score > bestScore) {
+      if (score >= bestScore) {
         bestScore = score;
         bestMove = {i, j};
       }
