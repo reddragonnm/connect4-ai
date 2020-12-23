@@ -190,6 +190,16 @@ function checkWin() {
     }
   }
 
+  let os = 0;
+  for (let i = 0; i < 6; i++) {
+    for (let j = 0; j < 7; j++) {
+      if (board[i][j] == '') os++;
+    }
+  }
+  
+  if (winner == null && os == 0)
+    winner = 'tie';
+
   return winner;
 }
 
