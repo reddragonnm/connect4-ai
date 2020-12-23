@@ -56,6 +56,7 @@ function draw() {
   background(200);
 
   let x = floor(map(mouseX, 0, width, 0, 7));
+  noStroke();
   fill(255, 255, 0);
   rect(x * mult, 0, mult, height);
 
