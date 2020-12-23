@@ -7,6 +7,10 @@ let board = [
   ['', '', '', '', '', '', '']
 ]
 
+let radius = 25;
+let mult;
+let off = 35;
+
 let human = 'r';
 let ai = 'b';
 let currentPlayer = human;
@@ -20,6 +24,8 @@ let gameOver = false;
 
 function setup() {
   createCanvas(500, 450);
+
+  mult = width/7;
 
   createP('Depth: ');
   depthSel = createSelect();
@@ -48,6 +54,10 @@ function depthChangeEvent() {
 
 function draw() {
   background(200);
+
+  let x = floor(map(mouseX, 0, width, 0, 7));
+  fill(255, 255, 0);
+  rect(x * mult, 0, mult, height);
 
   showBoard();
   manageWin();
@@ -86,10 +96,6 @@ function manageWin() {
 }
 
 function showBoard() {
-  let mult = width/7;
-  let off = 35;
-  let radius = 25;
-
   for (let i = 0; i < 6; i++) {
     for (let j = 0; j < 7; j++) {
       let t = board[i][j];
