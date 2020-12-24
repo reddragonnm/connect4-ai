@@ -24,8 +24,9 @@ let gameOver = false;
 
 function setup() {
   createCanvas(500, 450);
+  frameRate(10);
 
-  mult = width/7;
+  mult = width / 7;
 
   createP('Depth: ');
   depthSel = createSelect();
@@ -56,9 +57,12 @@ function draw() {
   background(200);
 
   let x = floor(map(mouseX, 0, width, 0, 7));
+  let x2 = floor(map(pmouseX, 0, width, 0, 7));
   noStroke();
   fill(255, 255, 0);
   rect(x * mult, 0, mult, height);
+  fill(255, 255, 0, 125);
+  rect(x2 * mult, 0, mult, height);
 
   showBoard();
   manageWin();
@@ -86,11 +90,11 @@ function manageWin() {
     textSize(50);
     fill(0);
     if (w == human)
-      text('Human won!', width/2, height/2);
+      text('Human won!', width / 2, height / 2);
     else if (w == ai)
-      text('AI won!', width/2, height/2);
+      text('AI won!', width / 2, height / 2);
     else if (w == 'tie')
-      text('Tie!', width/2, height/2);
+      text('Tie!', width / 2, height / 2);
 
     gameOver = true;
   }
@@ -122,8 +126,8 @@ function showBoard() {
 function setOf(arr) {
   let newArr = [];
   for (let i of arr) {
-      if (!newArr.includes(i))
-        newArr.push(i);
+    if (!newArr.includes(i))
+      newArr.push(i);
   }
   return newArr;
 }
@@ -196,7 +200,7 @@ function checkWin() {
       if (board[i][j] == '') os++;
     }
   }
-  
+
   if (winner == null && os == 0)
     winner = 'tie';
 
