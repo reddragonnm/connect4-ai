@@ -28,6 +28,11 @@ function setup() {
 
   mult = width / 7;
 
+  skipButton = createButton("Skip turn");
+  skipButton.mousePressed(() => {
+    currentPlayer = ai;
+  })
+
   createP('Depth: ');
   depthSel = createSelect();
   for (let i = 2; i < 9; i++) {
