@@ -55,7 +55,7 @@ function minimaxModeChange() {
 }
 
 function depthChangeEvent() {
-  maxDepth = depthSel.value();
+  maxDepth = Number(depthSel.value());
 }
 
 function draw() {
