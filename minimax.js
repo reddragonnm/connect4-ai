@@ -83,7 +83,7 @@ function aiMove() {
       board[j][i] = ai;
 
       let score;
-      if (false) {
+      if (minimaxNormal) {
         score = minimax(board, maxDepth, false);
       } else {
         score = minimaxABP(board, maxDepth, false, -Infinity, Infinity);
@@ -109,12 +109,13 @@ function minimax(board, depth, isMaximizing) {
 
   let r = checkWin();
   if (r != null) {
-    let s;
-    if (r == human) s = scores.human;
-    else if (r == ai) s = scores.ai;
-    else if (r == "tie") s = scores.tie;
-
-    return s - 20 * nMoves;
+    if (r == human) {
+      return scores.human + 20 * nMoves;
+    } else if (r == ai) {
+      return scores.ai - 20 * nMoves;
+    } else if (r == "tie") {
+      return scores.tie;
+    }
   }
 
   if (depth == 0) {
@@ -159,12 +160,13 @@ function minimaxABP(board, depth, isMaximizing, alpha, beta) {
 
   let r = checkWin();
   if (r != null) {
-    let s;
-    if (r == human) s = scores.human;
-    else if (r == ai) s = scores.ai;
-    else if (r == "tie") s = scores.tie;
-
-    return s - 20 * nMoves;
+    if (r == human) {
+      return scores.human + 20 * nMoves;
+    } else if (r == ai) {
+      return scores.ai - 20 * nMoves;
+    } else if (r == "tie") {
+      return scores.tie;
+    }
   }
 
   if (depth == 0) {

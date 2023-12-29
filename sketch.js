@@ -16,7 +16,8 @@ let ai = 'b';
 let currentPlayer = human;
 
 let depthSel;
-let maxDepth = 5;
+let maxDepth = 4;
+let maxDepthVal = 4;
 let minimaxMode;
 let minimaxNormal = true;
 
@@ -38,14 +39,14 @@ function setup() {
   for (let i = 2; i < 9; i++) {
     depthSel.option(i);
   }
-  depthSel.selected(5);
+  depthSel.selected(4);
   depthSel.changed(depthChangeEvent);
 
   createP('Minimax Mode: ');
   minimaxMode = createSelect();
   minimaxMode.option('Normal');
   minimaxMode.option('Alpha Beta Pruning');
-  minimaxMode.selected('Normal');
+  minimaxMode.selected('Alpha Beta Pruning');
   minimaxMode.changed(minimaxModeChange);
 }
 
@@ -56,6 +57,7 @@ function minimaxModeChange() {
 
 function depthChangeEvent() {
   maxDepth = Number(depthSel.value());
+  maxDepthVal = Number(depthSel.value());
 }
 
 function draw() {
@@ -74,6 +76,8 @@ function draw() {
 
   if (currentPlayer == ai && !gameOver) {
     aiMove();
+    maxDepthVal = maxDepthVal ** 1.03;
+    maxDepth = Math.round(maxDepthVal);
     currentPlayer = human;
   }
 }
