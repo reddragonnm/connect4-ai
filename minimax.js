@@ -101,6 +101,12 @@ function aiMove() {
     }
   }
 
+  if (bestScore > 10000) {
+    console.log("AI will win!");
+  } else if (bestScore < -10000) {
+    console.log("Human can win!");
+  }
+
   if (bestMove != null) board[bestMove.j][bestMove.i] = ai;
 }
 
